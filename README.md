@@ -3,13 +3,6 @@ This repository contains the GBD internship task project, which involves develop
 
 ---
 
-### Docker link and console command
-https://hub.docker.com/repository/docker/iulianj/car_request_docker
-
-`pull iulianj/car_request_docker:v1`
-
----
-
 ### Payload settings 
 Tip ofertă: Vând  
 Marcă: Renault Megane III  
