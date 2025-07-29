@@ -12,7 +12,7 @@ SINGLE_MODE - boolean;
 ### Payload settings 
 Tip ofertă: Vând  
 Marcă: Renault Megane III  
-Rulaj: 100000 - 300000  
+Rulaj: 100000 - 350000  
 Capacitate Cilindrică: 1000 - 2500  
 
 ---
