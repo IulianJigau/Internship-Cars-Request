@@ -3,6 +3,12 @@ This repository contains the GBD internship task project, which involves develop
 
 ---
 
+### Environment variables 
+PAGE_SIZE - int;
+SINGLE_MODE - boolean;  
+
+---
+
 ### Payload settings 
 Tip ofertă: Vând  
 Marcă: Renault Megane III  
