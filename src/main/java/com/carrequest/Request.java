@@ -25,6 +25,7 @@ public class Request {
         FileHandler fileHandler = new FileHandler("RequestApp.log", true);
         fileHandler.setFormatter(new SimpleFormatter());
         logger.addHandler(fileHandler);
+        logger.setUseParentHandlers(false);
 
         String pageSizeEnv = System.getenv("PAGE_SIZE");
         String singleModeEnv = System.getenv("SINGLE_MODE");
