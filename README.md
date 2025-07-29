@@ -4,7 +4,7 @@ This repository contains the GBD internship task project, which involves develop
 ---
 
 ### Environment variables 
-PAGE_SIZE - int;
+PAGE_SIZE - int;  
 SINGLE_MODE - boolean;  
 
 ---
