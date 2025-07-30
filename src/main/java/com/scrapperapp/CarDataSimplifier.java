@@ -1,10 +1,15 @@
 package com.scrapperapp;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class CarDataSimplifier {
+
+    private static final Logger logger = Logger.getLogger(RequestLoop.class.getName());
 
     public static void simplify(String BASE_URL, JsonArray carsDataRaw, FilteredData data) {
         FilteredData.Stats stats = data.stats;
@@ -38,7 +43,7 @@ public class CarDataSimplifier {
                 stats.totalCars++;
 
             } catch (Exception e) {
-                // logger.log(Level.SEVERE, String.format("Failed to parse entry: %s", car), e);
+                logger.log(Level.SEVERE, String.format("Failed to parse entry: %s", car), e);
             }
         }
     }

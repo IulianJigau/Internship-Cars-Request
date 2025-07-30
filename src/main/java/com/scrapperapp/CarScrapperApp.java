@@ -14,10 +14,12 @@ public class CarScrapperApp {
 
         RequestLoop.loop(data, payload, BASE_URL, API_PATH);
 
-        if (Defaults.shortMode) {
-            FilteredDataPrinter.printShort(data);
-        } else {
-            FilteredDataPrinter.printLong(data);
+        if (data.stats.totalCars != 0) {
+            if (Defaults.shortMode) {
+                FilteredDataPrinter.printShort(data);
+            } else {
+                FilteredDataPrinter.printLong(data);
+            }
         }
     }
 }
