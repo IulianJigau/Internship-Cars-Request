@@ -7,8 +7,12 @@ public class InitializePayload{
     public static void initialize(Payload payload){
         payload.variables.input.pagination.limit = Defaults.pageSize;
 
-        //Renault Megane III
+        //Cutie Mecanica
         payload.addFilters(new Payload.Filter(1, List.of(new Payload.Feature(2095, List.of(36188), null, null))));
+        //Diesel
+        payload.addFilters(new Payload.Filter(4, List.of(new Payload.Feature(151, List.of(24), null, null))));
+        //Renault Megane III
+        payload.addFilters(new Payload.Filter(5, List.of(new Payload.Feature(101, List.of(4), null, null))));
         //Tip oferta - vand
         payload.addFilters(new Payload.Filter(16, List.of(new Payload.Feature(1, List.of(776), null, null))));
         //Rulaj 100k - 350k
