@@ -19,6 +19,6 @@ public class HttpService {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        return response.toString();
+        return response.body();
     }
 }
