@@ -12,8 +12,11 @@ SINGLE_MODE - boolean;
 ### Payload settings 
 Tip ofertă: Vând  
 Marcă: Renault Megane III  
+An: 2008 - 2016
 Rulaj: 100000 - 350000  
-Capacitate Cilindrică: 1000 - 2500  
+Capacitate Cilindrică: 0 - 1600  
+Cutie: Mecanică
+Tip combustibil: Diesel
 
 ---
 
