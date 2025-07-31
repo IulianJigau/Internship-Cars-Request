@@ -6,15 +6,22 @@ import java.util.logging.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class CarDataSimplifier {
 
     private static final Logger logger = Logger.getLogger(RequestLoop.class.getName());
 
-    public static void simplify(String BASE_URL, JsonArray carsDataRaw, FilteredData data) {
+    public static void simplify(String BASE_URL, String carsDataRaw, FilteredData data) {
+        JsonArray carsDataJson = JsonParser.parseString(carsDataRaw)
+                .getAsJsonObject()
+                .getAsJsonObject("data")
+                .getAsJsonObject("searchAds")
+                .getAsJsonArray("ads");
+
         FilteredData.Stats stats = data.stats;
 
-        for (JsonElement car : carsDataRaw) {
+        for (JsonElement car : carsDataJson) {
             try {
                 JsonObject carJsonRaw = car.getAsJsonObject();
 

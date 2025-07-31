@@ -5,7 +5,7 @@ import java.util.List;
 public class InitializePayload{
 
     public static void initialize(Payload payload){
-        payload.variables.input.pagination.limit = Defaults.pageSize;
+        payload.pageSizeSet(Defaults.pageSize); 
 
         //Tip oferta - vand
         payload.addFilters(new Payload.Filter(16, List.of(new Payload.Feature(1, List.of(776), null, null))));
