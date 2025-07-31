@@ -31,5 +31,8 @@ public class CarScrapperApp {
                 FilteredDataPrinter.printLong(data);
             }
         }
+        else{
+            logger.log(Level.WARNING, "No data available to print");
+        }
     }
 }

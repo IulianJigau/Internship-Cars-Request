@@ -3,55 +3,45 @@ package com.scrapperapp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 public class CarDataSimplifier {
 
     private static final Logger logger = Logger.getLogger(RequestLoop.class.getName());
 
     public static void simplify(String BASE_URL, String carsDataRaw, FilteredData data) {
-        JsonArray carsDataJson = JsonParser.parseString(carsDataRaw)
-                .getAsJsonObject()
-                .getAsJsonObject("data")
-                .getAsJsonObject("searchAds")
-                .getAsJsonArray("ads");
+        String adsArray = JsonUtility.extractObject(carsDataRaw, "\"ads\"", new char[]{'[', ']'});
+        if(adsArray.isEmpty()){
+            logger.log(Level.WARNING, "No ads data was retrieved");
+            return;
+        }
 
-        FilteredData.Stats stats = data.stats;
-
-        for (JsonElement car : carsDataJson) {
-            try {
-                JsonObject carJsonRaw = car.getAsJsonObject();
-
-                String carId = carJsonRaw.get("id").getAsString();
-                String title = carJsonRaw.get("title").getAsString();
-
-                JsonElement priceElement = carJsonRaw.get("price");
-                if (priceElement == null || priceElement.isJsonNull()) {
-                    continue;
-                }
-
-                JsonObject priceValue = priceElement.getAsJsonObject().getAsJsonObject("value");
-                int price = priceValue.get("value").getAsInt();
-                String unit = priceValue.get("unit").getAsString();
-
-                FilteredData.Info carInfo = data.new Info();
-                carInfo.id = carId;
-                carInfo.title = title;
-                carInfo.price = price;
-                carInfo.unit = unit.replace("UNIT_", "");
-
-                data.info.add(carInfo);
-
-                data.compareMinMaxPrice(price);
-                stats.totalPrice += price;
-                stats.totalCars++;
-
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, String.format("Failed to parse entry: %s", car), e);
+        int idx = 0;
+        while ((idx = adsArray.indexOf("{", idx)) != -1) {
+            int objEnd = JsonUtility.findMatchingDelimiter(adsArray, idx, new char[]{'{', '}'});
+            if (objEnd == -1) {
+                break;
             }
+
+            String ad = adsArray.substring(idx, objEnd + 1);
+
+            String priceObject = JsonUtility.extractObject(ad, "\"price\"", new char[]{'{', '}'});
+            if(priceObject.equals("")){
+                continue;
+            }
+            String valueObject = JsonUtility.extractObject(priceObject, "\"value\"", new char[]{'{', '}'});
+
+            FilteredData.Info carInfo = data.new Info();
+
+            carInfo.id = JsonUtility.removeQuotes(JsonUtility.extractValue(ad, "\"id\""));
+            carInfo.title = JsonUtility.removeQuotes(JsonUtility.extractValue(ad, "\"title\""));
+            carInfo.price = Double.parseDouble(JsonUtility.extractValue(valueObject, "\"value\"").replaceAll("[^0-9.]", ""));
+            carInfo.unit = JsonUtility.removeQuotes(JsonUtility.extractValue(valueObject, "\"unit\"")).replace("UNIT_", "");
+
+            data.info.add(carInfo);
+            data.compareMinMaxPrice(carInfo.price);
+            data.stats.totalPrice += carInfo.price;
+            data.stats.totalCars++;
+
+            idx = objEnd + 1;
         }
     }
 }

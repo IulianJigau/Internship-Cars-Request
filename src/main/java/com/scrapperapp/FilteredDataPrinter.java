@@ -6,7 +6,7 @@ import java.util.List;
 public class FilteredDataPrinter {
 
     public static void printSummary(FilteredData.Stats stats) {
-        System.out.println("Car Listings Summary");
+        System.out.println("Summary");
         System.out.printf("Min Price:  %.2f%n", stats.minPrice);
         System.out.printf("Max Price:  %.2f%n", stats.maxPrice);
         System.out.printf("Avg Price:  %.2f%n", stats.avgPrice);
@@ -15,7 +15,7 @@ public class FilteredDataPrinter {
     }
 
     public static void printListings(List<FilteredData.Info> dataInfo) {
-        System.out.println("Car Listings");
+        System.out.println("Listings");
         for (FilteredData.Info car : dataInfo) {
             System.out.println("Title: " + car.title);
             System.out.println("Price: " + car.price + " " + car.unit);

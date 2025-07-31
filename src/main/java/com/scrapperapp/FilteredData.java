@@ -13,7 +13,7 @@ public class FilteredData {
         this.baseUrl = baseUrl;
     }
 
-    public void compareMinMaxPrice(int price) {
+    public void compareMinMaxPrice(double price) {
         if (price < this.stats.minPrice) {
             this.stats.minPrice = price;
         } else if (price > this.stats.maxPrice) {
@@ -34,7 +34,7 @@ public class FilteredData {
 
         public String id;
         public String title;
-        public int price;
+        public double price;
         public String unit;
 
         public String url() {
