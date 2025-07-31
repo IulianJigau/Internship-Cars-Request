@@ -12,7 +12,9 @@ public class RequestLoop {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static void loop(FilteredData data, Payload payload, String baseUrl, String apiPath) throws Exception {
-        while (true) {
+        boolean dataExists = true;
+
+        while (dataExists) {
             String carsDataRaw = HttpService.sendCarRequest(gson.toJson(payload), baseUrl + apiPath);
 
             if (carsDataRaw == null) {
@@ -20,11 +22,7 @@ public class RequestLoop {
                 return;
             }
 
-            CarDataSimplifier.simplify(baseUrl, carsDataRaw, data);
-
-            if (data.info.size() != payload.pageSizeGet()) {
-                break;
-            }
+            dataExists = CarDataSimplifier.simplify(baseUrl, carsDataRaw, data);
 
             payload.pageIncrement();
         }

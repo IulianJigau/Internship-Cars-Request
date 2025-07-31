@@ -29,12 +29,11 @@ public class JsonUtility {
     }
 
     public static String extractObject(String source, String key, char[] delimiter) {
-        int idx = source.indexOf(key);
+        int idx = source.indexOf(key + ":" + delimiter[0]);
         if (idx == -1) {
             return "";
         }
-        int colon = source.indexOf(":", idx);
-        int braceStart = source.indexOf(delimiter[0], colon);
+        int braceStart = source.indexOf(delimiter[0], idx);
         int braceEnd = findMatchingDelimiter(source, braceStart, delimiter);
         if (braceStart == -1 || braceEnd == -1) {
             return "";

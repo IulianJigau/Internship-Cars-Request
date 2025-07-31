@@ -1,17 +1,11 @@
 package com.scrapperapp;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class CarDataSimplifier {
 
-    private static final Logger logger = Logger.getLogger(RequestLoop.class.getName());
-
-    public static void simplify(String BASE_URL, String carsDataRaw, FilteredData data) {
+    public static boolean simplify(String BASE_URL, String carsDataRaw, FilteredData data) {
         String adsArray = JsonUtility.extractObject(carsDataRaw, "\"ads\"", new char[]{'[', ']'});
-        if(adsArray.isEmpty()){
-            logger.log(Level.WARNING, "No ads data was retrieved");
-            return;
+        if (adsArray.equals("[]")) {
+            return false;
         }
 
         int idx = 0;
@@ -20,11 +14,11 @@ public class CarDataSimplifier {
             if (objEnd == -1) {
                 break;
             }
-
             String ad = adsArray.substring(idx, objEnd + 1);
+            idx = objEnd + 1;
 
             String priceObject = JsonUtility.extractObject(ad, "\"price\"", new char[]{'{', '}'});
-            if(priceObject.equals("")){
+            if (priceObject.equals("")) {
                 continue;
             }
             String valueObject = JsonUtility.extractObject(priceObject, "\"value\"", new char[]{'{', '}'});
@@ -40,8 +34,7 @@ public class CarDataSimplifier {
             data.compareMinMaxPrice(carInfo.price);
             data.stats.totalPrice += carInfo.price;
             data.stats.totalCars++;
-
-            idx = objEnd + 1;
         }
+        return true;
     }
 }
