@@ -4,7 +4,13 @@ import java.util.List;
 
 public class CarDataSimplifier {
 
-    public static boolean simplify(String BASE_URL, List<RootResponse.Ads> cars, FilteredData data) {
+    FilteredData data;
+
+    public CarDataSimplifier(FilteredData data){
+        this.data = data;
+    }
+
+    public boolean simplify(List<RootResponse.Ads> cars) {
 
         if (cars.isEmpty()) {
             return false;
@@ -20,6 +26,7 @@ public class CarDataSimplifier {
             carInfo.id = car.id;
             carInfo.title = car.title;
             carInfo.price = car.price.value.value;
+            
 
             data.info.add(carInfo);
             data.compareMinMaxPrice(carInfo.price);
