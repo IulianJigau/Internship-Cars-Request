@@ -44,7 +44,7 @@ public class DataRetriever {
             RootResponse rootResponse;
             rootResponse = mapper.readValue(ResponseDataString, RootResponse.class);
 
-            if (rootResponse.data.searchAds.isNull()) {
+            if (rootResponse.data.searchAds == null) {
                 logger.severe("No data could be serialized during the mapping process");
                 return null;
             }

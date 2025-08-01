@@ -19,10 +19,6 @@ public class RootResponse {
     public static class SearchAds {
 
         public List<Ads> ads;
-
-        public boolean isNull() {
-            return (this == null) ? true : false;
-        }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
