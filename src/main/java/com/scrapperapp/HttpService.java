@@ -6,10 +6,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class HttpService {
+
     private static final HttpClient client = HttpClient.newHttpClient();
 
-    public static String sendCarRequest(String payload, String url) throws Exception {
-
+    public static String sendRequest(String payload, String url) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
@@ -18,7 +18,6 @@ public class HttpService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
         return response.body();
     }
 }

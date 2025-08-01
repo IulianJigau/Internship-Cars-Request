@@ -35,7 +35,6 @@ public class FilteredData {
         public String id;
         public String title;
         public double price;
-        public String unit;
 
         public String url() {
             return baseUrl + this.id;

@@ -32,7 +32,7 @@ public class CarScrapperApp {
             }
         }
         else{
-            logger.log(Level.WARNING, "No data available to print");
+            logger.warning("No data available to print");
         }
     }
 }

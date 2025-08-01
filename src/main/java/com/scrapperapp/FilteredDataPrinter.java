@@ -7,19 +7,19 @@ public class FilteredDataPrinter {
 
     public static void printSummary(FilteredData.Stats stats) {
         System.out.println("Summary");
-        System.out.printf("Min Price:  %.2f%n", stats.minPrice);
-        System.out.printf("Max Price:  %.2f%n", stats.maxPrice);
-        System.out.printf("Avg Price:  %.2f%n", stats.avgPrice);
-        System.out.println("total Cars:  " + stats.totalCars);
+        System.out.printf("Min Price:  %.2f %s %n", stats.minPrice, "EUR");
+        System.out.printf("Max Price:  %.2f %s %n", stats.maxPrice, "EUR");
+        System.out.printf("Avg Price:  %.2f %s %n", stats.avgPrice, "EUR");
+        System.out.printf("total Cars:  %d", stats.totalCars);
         System.out.println();
     }
 
     public static void printListings(List<FilteredData.Info> dataInfo) {
         System.out.println("Listings");
         for (FilteredData.Info car : dataInfo) {
-            System.out.println("Title: " + car.title);
-            System.out.println("Price: " + car.price + " " + car.unit);
-            System.out.println("URL: " + car.url());
+            System.out.printf("Title: %s %n", car.title);
+            System.out.printf("Price: %.2f %s %n", car.price, "EUR");
+            System.out.printf("URL: %s %n", car.url());
             System.out.println();
         }
     }
