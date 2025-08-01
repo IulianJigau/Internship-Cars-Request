@@ -11,6 +11,6 @@ FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
-COPY --from=builder /app/target/CarRequest-demo-1.0-SNAPSHOT.jar app.jar
+COPY --from=builder /app/target/ScrapperApp-demo-1.0-SNAPSHOT.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
