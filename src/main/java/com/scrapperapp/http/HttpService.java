@@ -1,4 +1,4 @@
-package com.scrapperapp;
+package com.scrapperapp.http;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -9,7 +9,13 @@ public class HttpService {
 
     private static final HttpClient client = HttpClient.newHttpClient();
 
-    public static String sendRequest(String payload, String url) throws Exception {
+    String url;
+
+    public HttpService(String url){
+        this.url = url;
+    }
+
+    public String sendRequest(String payload) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")

@@ -1,7 +1,9 @@
-package com.scrapperapp;
+package com.scrapperapp.output;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.scrapperapp.model.FilteredData;
 
 public class FilteredDataPrinter {
 

@@ -11,14 +11,6 @@
     <name>ScrapperApp demo</name>
 
     <dependencies>
-        <!-- Gson library -->
-        <!-- <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.10.1</version>
-        </dependency> -->
-
-        <!-- Jackson library -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -35,14 +27,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <mainClass>com.carrequest.Request</mainClass>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.5.0</version>
@@ -55,7 +39,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.scrapperapp.CarScrapperApp</mainClass>
+                                    <mainClass>com.scrapperapp.app.ScrapperApp</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

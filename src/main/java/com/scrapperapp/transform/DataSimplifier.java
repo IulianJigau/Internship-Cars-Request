@@ -1,12 +1,15 @@
-package com.scrapperapp;
+package com.scrapperapp.transform;
 
 import java.util.List;
 
-public class CarDataSimplifier {
+import com.scrapperapp.model.FilteredData;
+import com.scrapperapp.model.RootResponse;
+
+public class DataSimplifier {
 
     FilteredData data;
 
-    public CarDataSimplifier(FilteredData data){
+    public DataSimplifier(FilteredData data){
         this.data = data;
     }
 

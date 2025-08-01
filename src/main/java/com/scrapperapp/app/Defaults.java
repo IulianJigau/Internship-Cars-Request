@@ -1,4 +1,4 @@
-package com.scrapperapp;
+package com.scrapperapp.app;
 
 public class Defaults {
 

@@ -1,13 +1,13 @@
-package com.scrapperapp;
+package com.scrapperapp.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FilteredData {
 
-    private final String baseUrl;
-    Stats stats = new Stats();
-    List<Info> info = new ArrayList<>();
+    public final String baseUrl;
+    public Stats stats = new Stats();
+    public List<Info> info = new ArrayList<>();
 
     public FilteredData(String baseUrl) {
         this.baseUrl = baseUrl;

@@ -1,6 +1,8 @@
-package com.scrapperapp;
+package com.scrapperapp.payload;
 
 import java.util.List;
+
+import com.scrapperapp.app.Defaults;
 
 public class PayloadInitializer {
 

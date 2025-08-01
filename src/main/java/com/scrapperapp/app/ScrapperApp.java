@@ -1,10 +1,16 @@
-package com.scrapperapp;
+package com.scrapperapp.app;
+
+import com.scrapperapp.payload.Payload;
+import com.scrapperapp.payload.PayloadInitializer;
+import com.scrapperapp.logic.DataRetriever;
+import com.scrapperapp.model.FilteredData;
+import com.scrapperapp.output.FilteredDataPrinter;
 
 import java.util.logging.Logger;
 
-public class CarScrapperApp {
+public class ScrapperApp {
 
-    private static final Logger logger = Logger.getLogger(CarScrapperApp.class.getName());
+    private static final Logger logger = Logger.getLogger(ScrapperApp.class.getName());
 
     private static final String BASE_URL = "https://999.md/";
     private static final String API_PATH = "graphql";

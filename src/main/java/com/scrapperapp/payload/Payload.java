@@ -1,4 +1,4 @@
-package com.scrapperapp;
+package com.scrapperapp.payload;
 
 import java.util.ArrayList;
 import java.util.List;
