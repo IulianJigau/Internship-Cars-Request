@@ -9,19 +9,19 @@ public class FilteredDataPrinter {
 
     public static void printSummary(FilteredData.Stats stats) {
         System.out.println("Summary");
-        System.out.printf("Min Price:  %.2f %s %n", stats.minPrice, "EUR");
-        System.out.printf("Max Price:  %.2f %s %n", stats.maxPrice, "EUR");
-        System.out.printf("Avg Price:  %.2f %s %n", stats.avgPrice, "EUR");
-        System.out.printf("total Cars:  %d", stats.totalCars);
+        System.out.printf("Min Price:  %.2f %s %n", stats.getMinPrice(), "EUR");
+        System.out.printf("Max Price:  %.2f %s %n", stats.getMaxPrice(), "EUR");
+        System.out.printf("Avg Price:  %.2f %s %n", stats.getAvgPrice(), "EUR");
+        System.out.printf("total Cars:  %d", stats.getTotalCars());
         System.out.println();
     }
 
     public static void printListings(List<FilteredData.Info> dataInfo) {
         System.out.println("Listings");
         for (FilteredData.Info car : dataInfo) {
-            System.out.printf("Title: %s %n", car.title);
-            System.out.printf("Price: %.2f %s %n", car.price, "EUR");
-            System.out.printf("URL: %s %n", car.url());
+            System.out.printf("Title: %s %n", car.getTitle());
+            System.out.printf("Price: %.2f %s %n", car.getPrice(), "EUR");
+            System.out.printf("URL: %s %n", car.getUrl());
             System.out.println();
         }
     }
@@ -33,9 +33,9 @@ public class FilteredDataPrinter {
         List<FilteredData.Info> minPriceCars = new ArrayList<>();
 
         for (FilteredData.Info car : data.info) {
-            if (stats.maxPrice == car.price) {
+            if (stats.getMaxPrice() == car.getPrice()) {
                 maxPriceCars.add(car);
-            } else if (stats.minPrice == car.price) {
+            } else if (stats.getMinPrice() == car.getPrice()) {
                 minPriceCars.add(car);
             }
         }

@@ -19,14 +19,26 @@ public class RootResponse {
     public static class SearchAds {
 
         public List<Ads> ads;
+
+        public boolean isNull() {
+            return (this == null) ? true : false;
+        }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Ads {
 
-        public String id;
-        public String title;
+        private String id;
+        private String title;
         public Price price;
+
+        public String getId() {
+            return id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -38,7 +50,15 @@ public class RootResponse {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class ValueObject {
 
-        public int value;
-        public String unit;
+        private int value;
+        private String unit;
+
+        public int getValue() {
+            return value;
+        }
+
+        public String getUnit() {
+            return unit;
+        }
     }
 }

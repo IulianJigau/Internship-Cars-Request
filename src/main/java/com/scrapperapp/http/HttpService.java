@@ -9,7 +9,7 @@ public class HttpService {
 
     private static final HttpClient client = HttpClient.newHttpClient();
 
-    String url;
+    private final String url;
 
     public HttpService(String url){
         this.url = url;

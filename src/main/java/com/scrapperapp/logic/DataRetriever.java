@@ -15,9 +15,9 @@ public class DataRetriever {
     private static final Logger logger = Logger.getLogger(DataRetriever.class.getName());
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    Payload payload;
-    String baseUrl;
-    String apiPath;
+    private final Payload payload;
+    private final String baseUrl;
+    private final String apiPath;
 
     public DataRetriever(Payload payload, String baseUrl, String apiPath){
         this.payload = payload;
@@ -44,7 +44,7 @@ public class DataRetriever {
             RootResponse rootResponse;
             rootResponse = mapper.readValue(ResponseDataString, RootResponse.class);
 
-            if (rootResponse.data.searchAds == null) {
+            if (rootResponse.data.searchAds.isNull()) {
                 logger.severe("No data could be serialized during the mapping process");
                 return null;
             }
@@ -56,8 +56,7 @@ public class DataRetriever {
         }
         while (dataExists);
 
-        double avg = data.stats.totalPrice / data.stats.totalCars;
-        data.stats.avgPrice = avg;
+        data.stats.setTotalCars(data.info.size());
 
         return data;
     }

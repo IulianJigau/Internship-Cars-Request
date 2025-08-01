@@ -26,15 +26,13 @@ public class DataSimplifier {
 
             FilteredData.Info carInfo = data.new Info();
 
-            carInfo.id = car.id;
-            carInfo.title = car.title;
-            carInfo.price = car.price.value.value;
-            
+            carInfo.setId(car.getId());
+            carInfo.setTitle(car.getTitle());
+            carInfo.setPrice(car.price.value.getValue());
 
             data.info.add(carInfo);
-            data.compareMinMaxPrice(carInfo.price);
-            data.stats.totalPrice += carInfo.price;
-            data.stats.totalCars++;
+            data.compareMinMaxPrice(carInfo.getPrice());
+            data.stats.addPriceTotal(carInfo.getPrice());
         }
 
         return true;

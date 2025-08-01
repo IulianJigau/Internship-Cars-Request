@@ -24,7 +24,7 @@ public class ScrapperApp {
         DataRetriever dataRetriever = new DataRetriever(payload, BASE_URL, API_PATH);
         FilteredData data = dataRetriever.retrieve();
 
-        if (data != null && data.stats.totalCars != 0) {
+        if (data != null && data.stats.getTotalCars() != 0) {
             if (Defaults.shortMode) {
                 FilteredDataPrinter.printShort(data);
             } else {

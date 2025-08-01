@@ -5,9 +5,9 @@ import java.util.List;
 
 public class FilteredData {
 
-    public final String baseUrl;
-    public Stats stats = new Stats();
-    public List<Info> info = new ArrayList<>();
+    private final String baseUrl;
+    public final Stats stats = new Stats();
+    public final List<Info> info = new ArrayList<>();
 
     public FilteredData(String baseUrl) {
         this.baseUrl = baseUrl;
@@ -23,21 +23,68 @@ public class FilteredData {
 
     public class Stats {
 
-        public double minPrice = Double.MAX_VALUE;
-        public double maxPrice = -1;
-        public double avgPrice = 0;
-        public double totalPrice = 0;
-        public int totalCars = 0;
+        private double minPrice = Double.MAX_VALUE;
+        private double maxPrice = -1;
+        private double totalPrice = 0;
+        private int totalCars = 0;
+
+        public double getMinPrice() {
+            return minPrice;
+        }
+
+        public double getMaxPrice() {
+            return maxPrice;
+        }
+
+        public int getTotalCars() {
+            return totalCars;
+        }
+
+        public void addPriceTotal(double price) {
+            totalPrice += price;
+        }
+
+        public void setTotalCars(int totalCars) {
+            this.totalCars = totalCars;
+        }
+
+        public double getAvgPrice() {
+            return totalPrice / totalCars;
+        }
     }
 
     public class Info {
 
-        public String id;
-        public String title;
-        public double price;
+        private String id;
+        private String title;
+        private double price;
 
-        public String url() {
+        public String getId() {
+            return id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public String getUrl() {
             return baseUrl + this.id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
         }
     }
 }
