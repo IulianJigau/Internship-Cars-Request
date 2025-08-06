@@ -93,12 +93,19 @@ public class WebhookHandler implements HttpHandler {
             return response;
         }
 
-        try {
-            bot.execute(message);
-        } catch (TelegramApiException e) {
-            response.text = "Server could not send the message";
-            response.code = 500;
-            logger.log(Level.SEVERE, response.text, e);
+        if (message != null) {
+            try {
+                bot.execute(message);
+            } catch (TelegramApiException e) {
+                response.text = "Server could not send the message";
+                response.code = 500;
+                logger.log(Level.SEVERE, response.text, e);
+                return response;
+            }
+        } else {
+            response.text = "The update did not have a message";
+            response.code = 204;
+            logger.log(Level.WARNING, response.text);
             return response;
         }
 

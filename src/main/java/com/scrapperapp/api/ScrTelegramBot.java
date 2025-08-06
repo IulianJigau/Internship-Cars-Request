@@ -2,6 +2,7 @@ package com.scrapperapp.api;
 
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import com.scrapperapp.app.Defaults;
@@ -30,10 +31,17 @@ public class ScrTelegramBot extends TelegramWebhookBot {
 
     @Override
     public SendMessage onWebhookUpdateReceived(Update update) {
-        String chatId = update.getMessage().getChatId().toString();
-        String messageText = update.getMessage().getText();
-        String response;
+        Message message = update.getMessage();
+        if (message == null) {
+            return null;
+        }
+        String chatId = message.getChatId().toString();
+        String messageText = message.getText();
+        if (messageText == null) {
+            return null;
+        }
 
+        String response;
         switch (messageText.trim().toLowerCase()) {
             case "/data":
                 CarsData carsData = CarDataRetriever.retrieve(defaults);
@@ -48,7 +56,6 @@ public class ScrTelegramBot extends TelegramWebhookBot {
                 response = "Unrecognized command. Try /data to get the latest cars.";
                 break;
         }
-
         return new SendMessage(chatId, response);
     }
 }
