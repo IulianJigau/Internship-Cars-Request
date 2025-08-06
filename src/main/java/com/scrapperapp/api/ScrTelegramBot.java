@@ -32,21 +32,23 @@ public class ScrTelegramBot extends TelegramWebhookBot {
     public SendMessage onWebhookUpdateReceived(Update update) {
         String chatId = update.getMessage().getChatId().toString();
         String messageText = update.getMessage().getText();
-
         String response;
 
-        if ("/data".equalsIgnoreCase(messageText.trim())) {
-            CarsData carsData = CarDataRetriever.retrieve(defaults);
+        switch (messageText.trim().toLowerCase()) {
+            case "/data":
+                CarsData carsData = CarDataRetriever.retrieve(defaults);
 
-            if (!carsData.info.isEmpty()) {
-                response = carsData.toString();
-            } else {
-                response = "No car data available to print";
-            }
+                if (!carsData.info.isEmpty()) {
+                    response = carsData.toString();
+                } else {
+                    response = "No car data available to print";
+                }
+                break;
+            default:
+                response = "Unrecognized command. Try /data to get the latest cars.";
+                break;
         }
-        else{
-            response = "Unrecognized command. Try /data to get the latest cars.";
-        }
+
         return new SendMessage(chatId, response);
     }
 }

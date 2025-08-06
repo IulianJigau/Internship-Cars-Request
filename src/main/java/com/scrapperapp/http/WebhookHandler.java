@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -94,7 +95,7 @@ public class WebhookHandler implements HttpHandler {
 
         try {
             bot.execute(message);
-        } catch (Exception e) {
+        } catch (TelegramApiException e) {
             response.text = "Server could not send the message";
             response.code = 500;
             logger.log(Level.SEVERE, response.text, e);
