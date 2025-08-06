@@ -11,7 +11,7 @@ public class HttpService {
 
     private final String url;
 
-    public HttpService(String url){
+    public HttpService(String url) {
         this.url = url;
     }
 

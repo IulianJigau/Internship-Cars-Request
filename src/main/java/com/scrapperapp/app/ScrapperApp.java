@@ -1,37 +1,34 @@
 package com.scrapperapp.app;
 
-import com.scrapperapp.payload.Payload;
-import com.scrapperapp.payload.PayloadInitializer;
-import com.scrapperapp.logic.DataRetriever;
-import com.scrapperapp.model.FilteredData;
-import com.scrapperapp.output.FilteredDataPrinter;
+import java.net.HttpURLConnection;
+import java.net.URI;
 
-import java.util.logging.Logger;
+import com.scrapperapp.api.ScrTelegramBot;
+import com.scrapperapp.http.LocalServer;
+import com.scrapperapp.http.WebhookHandler;
 
 public class ScrapperApp {
 
-    private static final Logger logger = Logger.getLogger(ScrapperApp.class.getName());
-
-    private static final String BASE_URL = "https://999.md/";
-    private static final String API_PATH = "graphql";
-
     public static void main(String[] args) throws Exception {
-        Defaults.initialize();
-        Payload payload = new Payload();
-        PayloadInitializer payloadInitializer = new PayloadInitializer(payload);
-        payloadInitializer.initialize();
 
-        DataRetriever dataRetriever = new DataRetriever(payload, BASE_URL, API_PATH);
-        FilteredData data = dataRetriever.retrieve();
+        Defaults defaults = new Defaults();
 
-        if (data != null && data.stats.getTotalCars() != 0) {
-            if (Defaults.shortMode) {
-                FilteredDataPrinter.printShort(data);
-            } else {
-                FilteredDataPrinter.printLong(data);
-            }
-        } else {
-            logger.warning("No data available to print");
-        }
+        ScrTelegramBot scrappingBot = new ScrTelegramBot(defaults);
+
+        LocalServer localServer = new LocalServer();
+        localServer.server.createContext("/webhook", new WebhookHandler(scrappingBot));
+        localServer.Initialize();
+
+        //For Testing Purposes Only
+        URI uri = URI.create(String.format("https://api.telegram.org/bot%s/setWebhook?url=%s%s",
+                defaults.BOT_TOKEN, defaults.SERVER_BASE_URL, defaults.BOT_PATH));
+        HttpURLConnection conn = (HttpURLConnection) uri.toURL().openConnection();
+        conn.getResponseCode();
+        //
+
+        // TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+        // SetWebhook setWebhook =
+        // SetWebhook.builder().url(defaults.SERVER_BASE_URL + scrappingBot.getBotPath()).build();
+        // botsApi.registerBot(scrappingBot, setWebhook);
     }
 }
