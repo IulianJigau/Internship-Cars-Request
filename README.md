@@ -5,20 +5,15 @@ This repository contains the GBD internship task project, which involves develop
 
 ### Environment variables 
 PAGE_SIZE - int;  
-SINGLE_MODE - boolean;  
+BOT_TOKEN - String;
 
 ---
 
 ### Payload settings 
-Tip ofertă: Vând  
 Marcă: Renault Megane III  
-An: 2008 - 2016
-Rulaj: 100000 - 350000  
-Capacitate Cilindrică: 0 - 1600  
-Cutie: Mecanică
-Tip combustibil: Diesel
-
----
-
-### Note  
-The app uses Google's Gson library in order to perform conversions using json objects, which was set up using Maven in the local environment
+Tip ofertă: Vând  
+Cutie: Mecanică  
+Rulaj: 100000 - 350000 km  
+Capacitate Cilindrică: 0 - 1600 cm^3  
+Tip combustibil: Diesel  
+An: 2008 - 2016  
