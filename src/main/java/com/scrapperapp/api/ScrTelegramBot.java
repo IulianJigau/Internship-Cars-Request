@@ -10,13 +10,12 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import com.scrapperapp.app.Defaults;
 import com.scrapperapp.cronjob.ChatDataSender;
-import com.scrapperapp.http.WebhookHandler;
 import com.scrapperapp.logic.CarDataRetriever;
 import com.scrapperapp.model.CarsData;
 
 public class ScrTelegramBot extends TelegramWebhookBot {
 
-    private static final Logger logger = Logger.getLogger(WebhookHandler.class.getName());
+    private static final Logger logger = Logger.getLogger(ScrTelegramBot.class.getName());
     private final Defaults defaults;
 
     public ScrTelegramBot(Defaults defaults) {
