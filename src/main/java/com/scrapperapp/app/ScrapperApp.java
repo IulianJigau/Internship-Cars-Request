@@ -4,10 +4,10 @@ import org.quartz.Scheduler;
 import org.quartz.impl.StdSchedulerFactory;
 
 import com.scrapperapp.api.ScrTelegramBot;
+import com.scrapperapp.cronjob.ChatDataSender;
 import com.scrapperapp.cronjob.CronJobManager;
 import com.scrapperapp.http.LocalServer;
 import com.scrapperapp.http.WebhookHandler;
-import com.scrapperapp.logic.ChatDataSender;
 
 public class ScrapperApp {
 

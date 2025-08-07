@@ -1,4 +1,4 @@
-package com.scrapperapp.logic;
+package com.scrapperapp.cronjob;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import com.scrapperapp.api.ScrTelegramBot;
 import com.scrapperapp.app.Defaults;
+import com.scrapperapp.logic.CarDataRetriever;
 import com.scrapperapp.model.CarsData;
 
 public class ChatDataSender implements Job {

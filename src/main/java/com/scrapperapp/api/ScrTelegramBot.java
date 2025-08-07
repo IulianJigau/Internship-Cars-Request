@@ -9,9 +9,9 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import com.scrapperapp.app.Defaults;
+import com.scrapperapp.cronjob.ChatDataSender;
 import com.scrapperapp.http.WebhookHandler;
 import com.scrapperapp.logic.CarDataRetriever;
-import com.scrapperapp.logic.ChatDataSender;
 import com.scrapperapp.model.CarsData;
 
 public class ScrTelegramBot extends TelegramWebhookBot {
