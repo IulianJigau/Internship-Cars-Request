@@ -26,18 +26,26 @@ public class ChatDataSender implements Job {
         defaults = d;
     }
 
+    public static int getCount() {
+        return chatIds.size();
+    }
+
     public static void addChat(String chatId) {
         if (!chatIds.contains(chatId)) {
             chatIds.add(chatId);
+            logger.log(Level.INFO, "A new chat was added to cronjob");
         }
     }
 
     public static void removeChat(String chatId) {
         chatIds.remove(chatId);
+        logger.log(Level.INFO, "A chat was removed from the cronjob");
     }
 
     @Override
     public void execute(JobExecutionContext context) {
+        logger.log(Level.INFO, "Cronjob execution started");
+
         String response;
         CarsData carsData;
         SendMessage message;
@@ -46,7 +54,8 @@ public class ChatDataSender implements Job {
             carsData = CarDataRetriever.retrieve(defaults);
 
             if (!carsData.info.isEmpty()) {
-                response = carsData.toString();
+                response = String.format("Here's your scheduled data display.%n%n%s%n%nType /stop to unsubscribe",
+                        carsData.toString());
             } else {
                 logger.log(Level.WARNING, "Car data request returned empty");
                 response = "No car data available to print";
