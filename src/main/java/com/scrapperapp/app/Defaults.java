@@ -9,7 +9,7 @@ public class Defaults {
     public final String TARGET_BASE_URL = "https://999.md/";
     public final String TARGET_API_PATH = "graphql";
 
-    public final String BOT_USERNAME = "CScrapperBot";
+    public final String BOT_NAME = "CScrapperBot";
 
     public Defaults() {
         String botTokenEnv = System.getenv("BOT_TOKEN");

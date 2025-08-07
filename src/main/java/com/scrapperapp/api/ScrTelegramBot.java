@@ -26,7 +26,7 @@ public class ScrTelegramBot extends TelegramWebhookBot {
 
     @Override
     public String getBotUsername() {
-        return defaults.BOT_USERNAME;
+        return defaults.BOT_NAME;
     }
 
     @Override
