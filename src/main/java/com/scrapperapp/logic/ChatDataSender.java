@@ -54,7 +54,7 @@ public class ChatDataSender implements Job {
             carsData = CarDataRetriever.retrieve(defaults);
 
             if (!carsData.info.isEmpty()) {
-                response = String.format("Here's your scheduled data display.%n%n%s%n%nType /stop to unsubscribe",
+                response = String.format("Here's your scheduled data display.%n%n%s%nType /stop to unsubscribe",
                         carsData.toString());
             } else {
                 logger.log(Level.WARNING, "Car data request returned empty");
