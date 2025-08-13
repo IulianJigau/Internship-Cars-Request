@@ -1,0 +1,9 @@
+app:
+  bots:
+    token: 8444077982:AAGr40Dk7vnqPYDmpo2YfZgjjpo_Z7l9Ee8
+    name: CScrapperBot
+    path: /webhook
+  web-request:
+    page-size: 100
+    base-url: https://999.md/
+    api-path: graphql
